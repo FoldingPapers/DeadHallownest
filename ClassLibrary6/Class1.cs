@@ -74,6 +74,7 @@ namespace ExampleMod1
             PlayerData.instance.nailsmithKilled = true;
             PlayerData.instance.dreamerScene1 = true;
             PlayerData.instance.zoteDead = true;
+            PlayerData.instance.clothLeftTown = true;
             #region gettingridofPeskyCornifer
             PlayerData.instance.corn_abyssEncountered = true;
             PlayerData.instance.corn_abyssLeft = true;
@@ -137,6 +138,11 @@ namespace ExampleMod1
                     {
                         UnityEngine.Object.Destroy(go);
                     }
+                    //Charged Lumaflies
+                    if (go.name.Contains("Zap Cloud"))
+                    {
+                        UnityEngine.Object.Destroy(go);
+                     }
                     //Well, because you usually get the Elegant Key from Sly, but Sly is getting removed, so is and the door that requires the Elegant key
                     if (go.name.Contains("Mage Door"))
                     {
@@ -152,6 +158,11 @@ namespace ExampleMod1
                     {
                         UnityEngine.Object.Destroy(go);
                     }
+                    //same for Quirrel
+                    if (go.name.Contains("Quirrel"))
+                    {
+                        UnityEngine.Object.Destroy(go);
+                    }
                     //Geo rocks because you don't need Geo
                     if (go.name.Contains("Geo Rock"))
                     {
@@ -162,7 +173,12 @@ namespace ExampleMod1
                     {
                         UnityEngine.Object.Destroy(go);
                     }
-
+                    //You don't need more masks, do you?
+                    if (go.name.Contains("Heart Piece"))
+                    {
+                         UnityEngine.Object.Destroy(go);
+                    }
+                    
 
                 }
   
