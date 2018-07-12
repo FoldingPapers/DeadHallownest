@@ -37,6 +37,8 @@ namespace ExampleMod1
             PlayerData.instance.defeatedMantisLords = true;
             PlayerData.instance.defeatedMegaBeamMiner = true;
             PlayerData.instance.defeatedMegaBeamMiner2 = true;
+            PlayerData.instance.killedMegaBeamMiner = true;
+            PlayerData.instance.killsMegaBeamMiner = 2;
             PlayerData.instance.defeatedMegaJelly = true;
             PlayerData.instance.defeatedNightmareGrimm = true;
             PlayerData.instance.falseKnightDefeated = true;
@@ -46,6 +48,7 @@ namespace ExampleMod1
             PlayerData.instance.giantFlyDefeated = true;
             PlayerData.instance.hornet1Defeated = true;
             PlayerData.instance.hornetOutskirtsDefeated = true;
+            PlayerData.instance.killedInfectedKnight = true;
             PlayerData.instance.infectedKnightDreamDefeated = true;
             PlayerData.instance.mageLordDefeated = true;
             PlayerData.instance.mageLordDreamDefeated = true;
@@ -55,6 +58,8 @@ namespace ExampleMod1
             PlayerData.instance.duskKnightDefeated = true;
             PlayerData.instance.greyPrinceDefeated = true;
             PlayerData.instance.whiteDefenderDefeated = true;
+            PlayerData.instance.killedBlackKnight = true;
+            PlayerData.instance.killedMimicSpider = true;
             //ghosts
             PlayerData.instance.galienDefeated = 2;
             PlayerData.instance.markothDefeated = 2;
@@ -63,7 +68,7 @@ namespace ExampleMod1
             PlayerData.instance.aladarSlugDefeated = 2;
             PlayerData.instance.mumCaterpillarDefeated = 2;
             PlayerData.instance.guardiansDefeated = 2;
-            //the remaining ones
+            //the remaining "defeated" ones
             PlayerData.instance.blocker1Defeated = true;
             PlayerData.instance.blocker2Defeated = true;
             PlayerData.instance.defeatedDoubleBlockers = true;
@@ -75,6 +80,13 @@ namespace ExampleMod1
             PlayerData.instance.dreamerScene1 = true;
             PlayerData.instance.zoteDead = true;
             PlayerData.instance.clothLeftTown = true;
+            PlayerData.instance.mageLordOrbsCollected = true;
+            PlayerData.instance.falseKnightOrbsCollected = true;
+            PlayerData.instance.greyPrinceOrbsCollected = true;
+            PlayerData.instance.infectedKnightOrbsCollected = true;
+            PlayerData.instance.whiteDefenderOrbsCollected = true;
+            PlayerData.instance.metCloth = true;
+            PlayerData.instance.savedCloth = true;
             #region gettingridofPeskyCornifer
             PlayerData.instance.corn_abyssEncountered = true;
             PlayerData.instance.corn_abyssLeft = true;
@@ -178,9 +190,14 @@ namespace ExampleMod1
                     {
                          UnityEngine.Object.Destroy(go);
                     }
-                    
+                    //Nor the Soul Vessels
+                    if (go.name.Contains("Vessel Fragment"))
+                    {
+                         UnityEngine.Object.Destroy(go);
+                    }
 
-                }
+
+            }
   
 
         }
