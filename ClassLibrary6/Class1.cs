@@ -26,6 +26,8 @@ namespace ExampleMod1
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged += NewRoom;
 
             ModHooks.Instance.NewGameHook += NewGame;
+
+            ModHooks.Instance.ColliderCreateHook += AnimationDisable;
             Log("Initialized");
         }
 
@@ -87,6 +89,7 @@ namespace ExampleMod1
             PlayerData.instance.whiteDefenderOrbsCollected = true;
             PlayerData.instance.metCloth = true;
             PlayerData.instance.savedCloth = true;
+            
             #region gettingridofPeskyCornifer
             PlayerData.instance.corn_abyssEncountered = true;
             PlayerData.instance.corn_abyssLeft = true;
@@ -119,7 +122,7 @@ namespace ExampleMod1
 
         private void NewRoom(Scene arg0, Scene arg1)
         {
-            
+
             GameObject[] gos = GameObject.FindObjectsOfType<GameObject>();
 
                 foreach (var go in gos)
@@ -155,6 +158,11 @@ namespace ExampleMod1
                     {
                         UnityEngine.Object.Destroy(go);
                      }
+                   //Garpedes
+                    if (go.name.Contains("Big Centipede"))
+                    {
+                        UnityEngine.Object.Destroy(go);
+                    }
                     //Well, because you usually get the Elegant Key from Sly, but Sly is getting removed, so is and the door that requires the Elegant key
                     if (go.name.Contains("Mage Door"))
                     {
@@ -196,9 +204,25 @@ namespace ExampleMod1
                          UnityEngine.Object.Destroy(go);
                     }
 
+                }
 
+            
+
+        }
+
+        private void AnimationDisable(GameObject go)
+        {
+            if (!go.name.Contains("centipede_pit")) return;
+
+            Animator anim = go.GetComponent<Animator>();
+
+            if (anim == null)
+            {
+                Log($"{go.name} does not have an Animator!");
+                return;
             }
-  
+
+            anim.enabled = false;
 
         }
     }
