@@ -27,7 +27,20 @@ namespace ExampleMod1
 
             ModHooks.Instance.NewGameHook += NewGame;
 
-            ModHooks.Instance.ColliderCreateHook += AnimationDisable;
+            ModHooks.Instance.ColliderCreateHook += (GameObject go) =>
+            {
+                if (go.name.Contains("centipede_pit")) return;
+
+    Animator anim = go.GetComponent<Animator>();
+
+                if (anim == null)
+                {
+                    Log($"{go.name} does not have an Animator!");
+                    return;
+                }
+
+                anim.enabled = false;
+            };
             Log("Initialized");
         }
 
@@ -89,7 +102,8 @@ namespace ExampleMod1
             PlayerData.instance.whiteDefenderOrbsCollected = true;
             PlayerData.instance.metCloth = true;
             PlayerData.instance.savedCloth = true;
-            
+            PlayerData.instance.fountainGeo = 3000;
+
             #region gettingridofPeskyCornifer
             PlayerData.instance.corn_abyssEncountered = true;
             PlayerData.instance.corn_abyssLeft = true;
@@ -203,28 +217,26 @@ namespace ExampleMod1
                     {
                          UnityEngine.Object.Destroy(go);
                     }
+                    //Uhh
+                    if (go.name.Contains("centipede_pit"))
+                    {
+                    Animator anim = go.GetComponent<Animator>();
+
+                    UnityEngine.Object.Destroy(anim);
+                    }
+
+                    if (go.name.Contains("Audio Player Centipedes"))
+                    {
+                    UnityEngine.Object.Destroy(go);
+                    }
 
                 }
-
+  
             
 
         }
 
-        private void AnimationDisable(GameObject go)
-        {
-            if (!go.name.Contains("centipede_pit")) return;
-
-            Animator anim = go.GetComponent<Animator>();
-
-            if (anim == null)
-            {
-                Log($"{go.name} does not have an Animator!");
-                return;
-            }
-
-            anim.enabled = false;
-
-        }
+       
     }
 
 }
