@@ -27,20 +27,6 @@ namespace ExampleMod1
 
             ModHooks.Instance.NewGameHook += NewGame;
 
-            ModHooks.Instance.ColliderCreateHook += (GameObject go) =>
-            {
-                if (go.name.Contains("centipede_pit")) return;
-
-    Animator anim = go.GetComponent<Animator>();
-
-                if (anim == null)
-                {
-                    Log($"{go.name} does not have an Animator!");
-                    return;
-                }
-
-                anim.enabled = false;
-            };
             Log("Initialized");
         }
 
